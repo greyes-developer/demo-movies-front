@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 
 import "./login.css";
 
-import {useForm} from '../../hooks/useForm';
+import { useForm } from "../../hooks/useForm";
+import { startLogin } from "../../actions/auth";
+import { createUser } from "../../actions/user";
 
 export const LoginScreen = () => {
+  const dispatch = useDispatch();
+
   const [firstFormValues, handleInputChangeF] = useForm({
     fEmail: "",
     fPassword: "",
@@ -20,15 +25,14 @@ export const LoginScreen = () => {
   const { fEmail, fPassword } = firstFormValues;
   const { sName, sSurname, sEmail, sPassword } = secondFormValues;
 
-
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Iniciar sesión");
+    dispatch(startLogin(fEmail, fPassword));
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log("Registrarse");
+    dispatch(createUser(sName, sSurname, sEmail, sPassword));
   };
 
   return (
