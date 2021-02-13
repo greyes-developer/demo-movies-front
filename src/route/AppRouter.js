@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
-import { HomeScreen } from "../components/auth/home/HomeScreen";
+import { HomeScreen } from "../components/home/HomeScreen";
 import { LoginScreen } from "../components/auth/LoginScreen";
 
 export const AppRouter = () => {

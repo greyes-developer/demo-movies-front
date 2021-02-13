@@ -1,10 +1,13 @@
-import React from 'react'
-import { AppRouter } from './route/AppRouter'
+import React from "react";
+import { Provider } from "react-redux";
+
+import { store } from "./store/store";
+import { AppRouter } from "./route/AppRouter";
 
 export const MoviesApp = () => {
-    return (
-        <div>
-            <AppRouter />
-        </div>
-    )
-}
+  return (
+    <Provider store={store}>
+      <AppRouter />
+    </Provider>
+  );
+};

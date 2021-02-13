@@ -2,29 +2,33 @@ import React, { useState } from "react";
 
 import "./login.css";
 
+import {useForm} from '../../hooks/useForm';
+
 export const LoginScreen = () => {
-  const [firstFormValues, setFirstFormValues] = useState({
-    email: "",
-    password: "",
+  const [firstFormValues, handleInputChangeF] = useForm({
+    fEmail: "",
+    fPassword: "",
   });
 
-  const { email, password } = firstFormValues;
+  const [secondFormValues, handleInputChangeS] = useForm({
+    sName: "",
+    sSurname: "",
+    sEmail: "",
+    sPassword: "",
+  });
 
-  const handleInputChange = ({ target }) => {
-    setFirstFormValues({
-      ...firstFormValues,
-      [target.name]: target.value,
-    });
-  };
+  const { fEmail, fPassword } = firstFormValues;
+  const { sName, sSurname, sEmail, sPassword } = secondFormValues;
+
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Iniciar sesión")
+    console.log("Iniciar sesión");
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-    console.log("Registrarse")
+    console.log("Registrarse");
   };
 
   return (
@@ -36,21 +40,21 @@ export const LoginScreen = () => {
             <div className="form-group">
               <input
                 type="text"
-                name="email"
+                name="fEmail"
                 className="form-control"
                 placeholder="Correo"
-                value={email}
-                onChange={handleInputChange}
+                value={fEmail}
+                onChange={handleInputChangeF}
               />
             </div>
             <div className="form-group">
               <input
                 type="password"
-                name="password"
+                name="fPassword"
                 className="form-control"
                 placeholder="Contraseña"
-                value={password}
-                onChange={handleInputChange}
+                value={fPassword}
+                onChange={handleInputChangeF}
               />
             </div>
             <div className="form-group">
@@ -68,29 +72,41 @@ export const LoginScreen = () => {
             <div className="form-group">
               <input
                 type="text"
+                name="sName"
                 className="form-control"
                 placeholder="Nombre"
+                value={sName}
+                onChange={handleInputChangeS}
               />
             </div>
             <div className="form-group">
               <input
                 type="text"
+                name="sSurname"
                 className="form-control"
                 placeholder="Apellido"
+                value={sSurname}
+                onChange={handleInputChangeS}
               />
             </div>
             <div className="form-group">
               <input
                 type="email"
+                name="sEmail"
                 className="form-control"
                 placeholder="Correo"
+                value={sEmail}
+                onChange={handleInputChangeS}
               />
             </div>
             <div className="form-group">
               <input
                 type="password"
+                name="sPassword"
                 className="form-control"
                 placeholder="Contraseña"
+                value={sPassword}
+                onChange={handleInputChangeS}
               />
             </div>
             <div className="form-group">
