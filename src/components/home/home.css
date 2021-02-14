@@ -1,0 +1,14 @@
+.btnSubmit {
+    height: 50px;
+    width: 100px;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    background-color: #0062cc;
+}
+
+form {
+    margin-top: 5%;
+}
