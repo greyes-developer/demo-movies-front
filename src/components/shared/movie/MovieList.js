@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 import "./movie.css";
+import img_photo from "../../../assets/img_photo.png";
 
 import { MovieItem } from "./MovieItem";
 
@@ -16,23 +17,30 @@ export const MovieList = React.memo(({ moviesData, favsMoviesData }) => {
     return movie;
   });
 
-  console.log("Se llamo a MovieList");
   return (
-    <div className="container">
-      <div className="card-grid">
-        {moviesData.map((movie) => {
-          return (
-            <MovieItem
-              key={movie.imdbID}
-              imdbID={movie.imdbID}
-              title={movie.Title}
-              poster={movie.Poster}
-              favorite={movie.favorite}
-              uid={data.id}
-            />
-          );
-        })}
-      </div>
-    </div>
+    <>
+      {moviesData.length === 0 ? (
+        <p>No se encontraron resultados para tu búsqueda</p>
+      ) : (
+        <div className="card-grid">
+          {moviesData.map((movie) => {
+            return (
+              <MovieItem
+                key={movie.imdbID}
+                imdbID={movie.imdbID}
+                title={movie.Title}
+                poster={
+                  movie.Poster && movie.Poster.length > 10
+                    ? movie.Poster
+                    : img_photo
+                }
+                favorite={movie.favorite}
+                uid={data.id}
+              />
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 });

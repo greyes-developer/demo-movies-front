@@ -2,19 +2,25 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import "./movie.css";
-
 import {
   createFavoriteMovie,
   deleteFavoriteMovie,
 } from "../../../actions/movie";
 
-export const MovieItem = ({ imdbID, title, poster, favorite = false, uid }) => {
+export const MovieItem = ({
+  imdbID,
+  title,
+  poster,
+  favorite = false,
+  uid,
+}) => {
   const dispatch = useDispatch();
 
   const handleBtnFavorite = () => {
     if (favorite) {
       dispatch(deleteFavoriteMovie({ imdbID, uid }));
     } else {
+      favorite = !favorite;
       dispatch(createFavoriteMovie({ imdbID, title, poster, favorite, uid }));
     }
   };
@@ -28,7 +34,8 @@ export const MovieItem = ({ imdbID, title, poster, favorite = false, uid }) => {
           className={`${favorite ? "btn btn-danger" : "btn btn-primary"}`}
           onClick={handleBtnFavorite}
         >
-          {favorite ? "Eliminar de favoritos" : "Agregar a favoritos"}
+          <i className={favorite ? "fas fa-heart" : "far fa-heart"}></i>
+          {favorite ? " Eliminar de favoritos" : " Agregar a favoritos"}
         </button>
       </div>
     </div>

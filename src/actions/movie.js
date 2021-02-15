@@ -29,7 +29,7 @@ export const getMovies = (title) => {
     if (resp && resp.Search) {
       dispatch(getMoviesSuccess(resp.Search));
     } else {
-      dispatch(getMoviesError(resp));
+      dispatch(getMoviesError([]));
     }
   };
 };
@@ -83,8 +83,6 @@ export const createFavoriteMovie = (data) => {
     dispatch(createFavoriteMovieLoading());
 
     const resp = await createFavoriteMovieService(data);
-
-    console.log(`Respuesta de crear favorite movie ${JSON.stringify(resp)}`);
 
     if (resp && resp.success) {
       dispatch(createFavoriteMovieSuccess(resp.data.imdbID));

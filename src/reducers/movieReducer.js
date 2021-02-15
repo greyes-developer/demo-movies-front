@@ -31,6 +31,7 @@ export const movieReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        data: [],
         error: action.payload,
       };
     case movieTypes.GET_FAVORITES_MOVIES_LOADING:

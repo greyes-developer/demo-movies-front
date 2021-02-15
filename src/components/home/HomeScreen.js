@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./home.css";
@@ -11,8 +11,12 @@ export const HomeScreen = () => {
   const dispatch = useDispatch();
   const [movieName, setMovieName] = useState("");
 
-  const { data: dataM } = useSelector((state) => state.movie);
-  const { data: dataFM } = useSelector((state) => state.movie.favorites);
+  const { loading: loadingM, data: dataM } = useSelector(
+    (state) => state.movie
+  );
+  const { loading: loadingFM, data: dataFM } = useSelector(
+    (state) => state.movie.favorites
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,10 +29,10 @@ export const HomeScreen = () => {
   };
 
   return (
-    <div>
+    <div className="home-container">
       <Navbar />
       <div className="container">
-        <h1>Consulta tus películas</h1>
+        <h1>Busca las películas que quieras</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <input
@@ -42,11 +46,22 @@ export const HomeScreen = () => {
             />
           </div>
           <div className="form-group">
-            <input type="submit" value="Buscar" className="btnSubmit" />
+            <input
+              type="submit"
+              value="Buscar"
+              className="btn btn-primary btnSubmit"
+            />
           </div>
         </form>
-        {dataM && dataFM && (
-          <MovieList moviesData={dataM} favsMoviesData={dataFM} />
+        {loadingM && loadingFM ? (
+          <i className="fas fa-spinner"></i>
+        ) : (
+          dataM &&
+          dataFM && (
+            <ol>
+              <MovieList moviesData={dataM} favsMoviesData={dataFM} />
+            </ol>
+          )
         )}
       </div>
     </div>

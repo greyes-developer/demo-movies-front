@@ -1,26 +1,25 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { HomeScreen } from "../components/home/HomeScreen";
 import { LoginScreen } from "../components/auth/LoginScreen";
+import { FavoritesScreen } from "../components/favorites/FavoritesScreen";
+
 import { PublicRoute } from "./PublicRoute";
 import { PrivateRoute } from "./PrivateRoute";
 
 export const AppRouter = () => {
   const { authenticated } = useSelector((state) => state.auth);
 
-  const authenticatedStored = localStorage.getItem('is-authenticated') ? true : false;
-  
+  const authenticatedStored = localStorage.getItem("is-authenticated")
+    ? true
+    : false;
+
   return (
     <div>
       <Router>
-        <div>
+        <div className="root-container">
           <Switch>
             <PublicRoute
               exact
@@ -34,7 +33,15 @@ export const AppRouter = () => {
               component={HomeScreen}
               isAuthenticated={authenticatedStored || authenticated}
             />
-            <Redirect to={`${authenticatedStored || authenticated ? "/" : "/login"}`} />
+            <PrivateRoute
+              exact
+              path="/favorites"
+              component={FavoritesScreen}
+              isAuthenticated={authenticatedStored || authenticated}
+            />
+            <Redirect
+              to={`${authenticatedStored || authenticated ? "/" : "/login"}`}
+            />
           </Switch>
         </div>
       </Router>

@@ -1,0 +1,8 @@
+.navbar-container {
+    display: flex;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-wrap: wrap;
+}

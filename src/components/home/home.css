@@ -1,14 +1,18 @@
+.home-container {
+  padding-bottom: 10px;
+}
+
+h1 {
+  color: white;
+}
+li {
+  color: white;
+}
 .btnSubmit {
-    height: 50px;
-    width: 100px;
-    padding: 10px;
-    border-radius: 15px;
-    border: none;
-    cursor: pointer;
-    color: #fff;
-    background-color: #0062cc;
+  max-width: 120px;
+  max-height: 50px;
 }
 
 form {
-    margin-top: 5%;
+  margin-top: 5%;
 }

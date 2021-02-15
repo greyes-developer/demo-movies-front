@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import "./login.css";
@@ -10,12 +10,14 @@ import { createUser } from "../../actions/user";
 export const LoginScreen = () => {
   const dispatch = useDispatch();
 
-  const [firstFormValues, handleInputChangeF] = useForm({
+  const [isPasswordVisible, setisPasswordVisible] = useState(false);
+
+  const [firstFormValues, handleInputChangeF, resetF] = useForm({
     fEmail: "",
     fPassword: "",
   });
 
-  const [secondFormValues, handleInputChangeS] = useForm({
+  const [secondFormValues, handleInputChangeS, resetS] = useForm({
     sName: "",
     sSurname: "",
     sEmail: "",
@@ -28,11 +30,13 @@ export const LoginScreen = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(startLogin(fEmail, fPassword));
+    resetF();
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
     dispatch(createUser(sName, sSurname, sEmail, sPassword));
+    resetS();
   };
 
   return (
@@ -53,13 +57,21 @@ export const LoginScreen = () => {
             </div>
             <div className="form-group">
               <input
-                type="password"
+                type={isPasswordVisible ? "text" : "password"}
                 name="fPassword"
                 className="form-control"
                 placeholder="Contraseña"
                 value={fPassword}
                 onChange={handleInputChangeF}
               />
+              <i
+                className={
+                  isPasswordVisible
+                    ? "far fa-eye-slash password-icon"
+                    : "far fa-eye password-icon"
+                }
+                onClick={() => setisPasswordVisible(!isPasswordVisible)}
+              ></i>
             </div>
             <div className="form-group">
               <input
@@ -105,13 +117,21 @@ export const LoginScreen = () => {
             </div>
             <div className="form-group">
               <input
-                type="password"
+                type={isPasswordVisible ? "text" : "password"}
                 name="sPassword"
                 className="form-control"
                 placeholder="Contraseña"
                 value={sPassword}
                 onChange={handleInputChangeS}
               />
+              <i
+                className={
+                  isPasswordVisible
+                    ? "far fa-eye-slash password-icon"
+                    : "far fa-eye password-icon"
+                }
+                onClick={() => setisPasswordVisible(!isPasswordVisible)}
+              ></i>
             </div>
             <div className="form-group">
               <input type="submit" className="btnSubmit" value="Crear cuenta" />
