@@ -1,6 +1,5 @@
 const FAVORITES_MOVIES_API_URL = "http://localhost:4001/api";
 
-
 export const getMovies = (title) => {
   const MOVIE_API = "http://omdbapi.com/";
   const API_KEY = "5a86609a";
@@ -8,19 +7,15 @@ export const getMovies = (title) => {
   return fetch(`${MOVIE_API}/?apikey=${API_KEY}&s=${title}`).then((resp) =>
     resp.json()
   );
-
 };
 
 export const getFavoritesMovies = (uid) => {
-
   return fetch(
     `${FAVORITES_MOVIES_API_URL}/movies-favorites/movies/${uid}`
   ).then((resp) => resp.json());
-
 };
 
 export const createFavoriteMovie = (data) => {
-
   return fetch(`${FAVORITES_MOVIES_API_URL}/movies-favorites/new-movie`, {
     method: "POST",
     body: JSON.stringify(data),
@@ -28,14 +23,12 @@ export const createFavoriteMovie = (data) => {
       "Content-Type": "application/json",
     },
   }).then((resp) => resp.json());
-
 };
 
-export const deleteFavoriteMovie = ({imdbID, uid}) => {
-
+export const deleteFavoriteMovie = ({ imdbID, uid }) => {
   const body = {
-    "uid": uid
-  }
+    uid: uid,
+  };
 
   return fetch(`${FAVORITES_MOVIES_API_URL}/movies-favorites/${imdbID}`, {
     method: "DELETE",
@@ -44,5 +37,13 @@ export const deleteFavoriteMovie = ({imdbID, uid}) => {
       "Content-Type": "application/json",
     },
   }).then((resp) => resp.json());
+};
 
+export const deleteFavoritesMoviesById = (uid) => {
+  return fetch(
+    `${FAVORITES_MOVIES_API_URL}/movies-favorites/delete-movies/${uid}`,
+    {
+      method: "DELETE",
+    }
+  ).then(resp => resp.json());
 };

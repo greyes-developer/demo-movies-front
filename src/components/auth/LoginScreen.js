@@ -10,7 +10,8 @@ import { createUser } from "../../actions/user";
 export const LoginScreen = () => {
   const dispatch = useDispatch();
 
-  const [isPasswordVisible, setisPasswordVisible] = useState(false);
+  const [isPasswordVisibleF, setisPasswordVisibleF] = useState(false);
+  const [isPasswordVisibleS, setisPasswordVisibleS] = useState(false);
 
   const [firstFormValues, handleInputChangeF, resetF] = useForm({
     fEmail: "",
@@ -57,7 +58,7 @@ export const LoginScreen = () => {
             </div>
             <div className="form-group">
               <input
-                type={isPasswordVisible ? "text" : "password"}
+                type={isPasswordVisibleF ? "text" : "password"}
                 name="fPassword"
                 className="form-control"
                 placeholder="Contraseña"
@@ -66,11 +67,11 @@ export const LoginScreen = () => {
               />
               <i
                 className={
-                  isPasswordVisible
+                  isPasswordVisibleF
                     ? "far fa-eye-slash password-icon"
                     : "far fa-eye password-icon"
                 }
-                onClick={() => setisPasswordVisible(!isPasswordVisible)}
+                onClick={() => setisPasswordVisibleF(!isPasswordVisibleF)}
               ></i>
             </div>
             <div className="form-group">
@@ -117,7 +118,7 @@ export const LoginScreen = () => {
             </div>
             <div className="form-group">
               <input
-                type={isPasswordVisible ? "text" : "password"}
+                type={isPasswordVisibleS ? "text" : "password"}
                 name="sPassword"
                 className="form-control"
                 placeholder="Contraseña"
@@ -126,11 +127,11 @@ export const LoginScreen = () => {
               />
               <i
                 className={
-                  isPasswordVisible
+                  isPasswordVisibleS
                     ? "far fa-eye-slash password-icon"
                     : "far fa-eye password-icon"
                 }
-                onClick={() => setisPasswordVisible(!isPasswordVisible)}
+                onClick={() => setisPasswordVisibleS(!isPasswordVisibleS)}
               ></i>
             </div>
             <div className="form-group">

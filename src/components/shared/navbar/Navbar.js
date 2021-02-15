@@ -27,6 +27,13 @@ export const Navbar = () => {
         >
           Películas favoritas
         </NavLink>
+        <NavLink
+          activeClassName="active"
+          className="nav-item nav-link"
+          to="/profile"
+        >
+          Perfil
+        </NavLink>
         <button className="btn btn-outline-danger" onClick={handleLogout}>
           <i className="fas fa-sign-out-alt"></i>
           <span> Salir</span>

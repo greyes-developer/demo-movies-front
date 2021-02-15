@@ -9,3 +9,9 @@ export const createUser = (data) => {
     body: JSON.stringify(data),
   }).then((resp) => resp.json());
 };
+
+export const deleteUser = (uid) => {
+  return fetch(`${API_URL}/user/${uid}`, {
+    method: "DELETE",
+  }).then((resp) => resp.json());
+};
