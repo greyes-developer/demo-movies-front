@@ -1,4 +1,4 @@
-# Demo movies web application
+# Movies web application demo
 
 ## Available Scripts for running app
 
