@@ -17,4 +17,4 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The .env files must be in the root of the project
 
-For the web application works correctly the user and movies backend must be running.\
+For the web application works correctly the user and movies backend must be running.
